@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap-4.5.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/fontawesome-free-6.2.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style2.css">
+        <title>Kviz</title>
+    </head>
+    <body>
+<div class="grid-container" style="display: flex; background-color: aqua; height: 100%;">
+    <div class="col-md-2 " style="background-color:#b92b2b; overflow:scroll;overflow-x: hidden; overflow-y: scroll;padding:20px;"><!--div za izbor kviza-->
+        <h3 class="sidebar-head">OBLASTI</h3>
+        
+       <!--ovo sam dodao da mi brise duplikate(duplikati se pojavljuju zato sto sam spojio dve tabele)-->
+        {% set slots = [] %}  
+{% for kviz in kvizovi  %}
+{% if kviz.ime in slots %}
+{% else %}
+   <!--ovde id=kviz.id sam promenio >>> id=kviz.quiz_id  zato sto kada izbrisemo pitanje promeni se tabela  i treba da ovde izbacuje po id kviza a ne id pitanja   /-milan-  -->
+   <div><a href="{{url_for('render_pocetna',id=kviz.quiz_id,idp=kviz.broji)}}">{{kviz.ime}}</a></div>
+   
+   {% set __ = slots.append(kviz.ime) %}
+   {% endif %}
+{% endfor %}
+       
+
+        
+    </div>
+    <div class="col-md-8" style="background-color:#c29417;"><!--div kviza-->
+        <div class="row justify-content-md-center">
+              <div class="col-md-auto" style="margin-top: 80px;">
+                
+                <h1>{{kvizovi2[0].ime}}</h1>
+              </div></div>
+             
+                {% block content %}
+
+        {% endblock %}
+            
+    </div>
+    
+
+        <div class="col-md-2" style="background-color:#44c91c;overflow-x: hidden; overflow-y: scroll; padding: 20px;"><!--div za rang listu-->
+            <h3 class="sidebar-head">Rang lista</h3>
+            <ol type="1" >
+                {% for korisnik in korisnici %}
+                <li ><div>{{korisnik.ime}}</div></li>
+                {% endfor %}
+            </ol>
+            <a href={{ url_for("logout")}}><button type="button" formaction="" class="btn btn-primary"  style="float: right; width: 88%; position: absolute;
+                bottom: 10px; padding: 10px; ">LOGOUT</button></a>
+        </div>
+ </div>
+
+
+<script src="/static/bootstrap-4.5.3/js/bootstrap.js"></script>
+        <script src="/static/fontawesome-free-6.2.1/js/all.js"></script>
+        <script src=""></script>
+    </body>
+</html>

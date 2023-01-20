@@ -1,0 +1,23 @@
+ {%extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-md-center" style="margin-top: 50px; ">
+<div class="col-md-auto" style="display: flex; align-items: center;justify-content: center;flex-direction: column;">
+    <label>SCORE</label><a href="{{url_for('render_kviz',id=kvizovi2[0].id,idp=1)}}"><button class="btn btn-primary">POCNI KVIZ</button></a>
+</div>
+</div>
+{% if (rola=="admin") %}
+  <div class="row justify-content-md-center" style="margin-top: 50px; ">
+  <div class="col" style="justify-content: center;display: flex;">
+   
+    <a href="{{url_for('render_modifikuj', id=1, idp=1)}}"><button class="btn btn-primary">MODIFIKUJ KVIZ</button></a>
+    
+  </div></div>
+  {% endif %}
+ 
+    
+  
+    
+                {% endblock %}
+                
+               
