@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap-4.5.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/fontawesome-free-6.2.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style2.css">
+        
+
+
+        <title>Kviz</title>
+    </head>
+    <body>
+        <div  class="grid-container" style="display: flex; background-color: aqua; height: 100%;">
+            <div class="col-md-2 " id="div_oblasti" ><!--div za izbor kviza-->
+                 <h3 class="sidebar-head">OBLASTI</h3>
+        
+                {% set slots = [] %}  
+                {% for kviz in kvizovi  %}
+                {% if kviz.ime in slots %}
+                {% else %}
+                
+                <div style="padding: 10px;  ">
+    
+    <a href="{{url_for('render_modifikuj',id=kviz.quiz_id,idp=kviz.broji)}}"><button type="button" id="kviz_ime_btn" class="btn btn-primary"  >{{kviz.ime}}</button></a>
+        
+
+    
+
+    </div>
+                
+                {% set __ = slots.append(kviz.ime) %}
+                {% endif %}
+                {% endfor %}
+
+                <div class="button-add"><a href="{{ url_for("novi_kviz")}}">
+                    
+                    <button class="btn btn-primary" id="add_kviz" >Dodaj novi kviz</button>
+                </a></div>           
+            
+        
+                </div>
+            <div class="col-md-8" style="background-color:#f0eaea;  "><!--div kviza-->
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto" style="margin-top: 80px;">
+                    
+                        <h1>{{kvizovi.ime}}</h1>
+                    </div>
+                </div>
+
+                <div class="container-modifikuj" id="div_modifikuj" >
+                    <div class="col-md-2 " id="div_pitanja"><!--div za izbor kviza-->
+                        <h3 class="sidebar-head">PITANJA</h3>
+        
+                        {% for pitanje in pitanja %}
+                            <div style="padding: 2px;  ">
+                                <a href="{{url_for("render_modifikuj",id=pitanje.quiz_id,idp=pitanje.broji)}}"><button type="button" id="pitanje_btn" class="btn btn-primary"  >br.{{pitanje.broji}}</button></a>
+                                
+                            </div>
+                        {% endfor %}
+                
+                        <div class="button-add"><a href={{ url_for("novo_pitanje", id=kvizovi2[0].id)}}><button class="btn btn-primary" id="add_pitanje_btn">Dodaj novo pitanje</button></a>
+                    
+    
+        
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="container-unos-podataka" style="padding: 30px;width: 100%;">
+                       
+                        <form action={{ url_for('render_modifikuj' , id=kvizovi2[0].id, idp=tekstp[0].broji)}}  method="POST" >
+
+                            <div class="field" style="height: 40px; width: 100%;;">
+                                <input class="unos_forma" id="unos-text-kviza" name="txt_kviz"  type="text" value="{{kvizovi2[0].ime}}" >         
+                            </div>
+                        <div class="field" style="height: 40px; width: 100%; margin-top: 20px;">
+
+                            <input class="unos_forma" id="unos-text-pitanja" name="txt" type="text" value="{{tekstp[0].tekst}}">
+                        </div>
+                        <div class="field" style="height: 40px; width: 100%; margin-top: 20px;">
+
+
+                            <input class="unos_forma" id="unos-odg1" name="odg1" type="text" value="{{tekstp[0].odg1}}">
+                        </div>
+                        <div class="field" style="height: 40px; width: 100%; margin-top: 20px;">
+
+                            <input class="unos_forma" id="unos-odg2" name="odg2" type="text" value="{{tekstp[0].odg2}}" >
+                        </div>
+                        <div class="field" style="height: 40px; width: 100%; margin-top: 20px;">
+
+
+                            <input class="unos_forma" id="unos-odg3"  name="odg3" type="text" value="{{tekstp[0].odg3}}">
+                        </div>
+                        <div class="field" style="height: 40px; width: 100%; margin-top: 20px;">
+
+
+                            <input class="unos_forma" id="unos-odg4" name="odg4" type="text" value="{{tekstp[0].odg4}}">
+                        </div>
+                        <div class="field"  style="height: 40px; width: 100%; margin-top: 20px;">
+                            <select id="dropdown-tacan-odgovor" name="sel_odg"  >
+                                
+                                <option {% if tekstp[0].tacno==1 %} selected {% endif %}  value="1" >Odgovor 1</option>
+                                <option {% if tekstp[0].tacno==2 %} selected {% endif %}  value="2" >Odgovor 2</option>
+                                <option {% if tekstp[0].tacno==3 %} selected {% endif %}  value="3" >Odgovor 3</option>
+                                <option {% if tekstp[0].tacno==4 %} selected {% endif %}  value="4" >Odgovor 4</option>
+                            </select>
+                        
+                            <input type="submit" value="Sacuvaj" class="btn btn-primary" id="sacuvaj_btn" >
+                            
+
+                            
+                            <input type="submit" formaction={{ url_for("delete_pitanje", id=kvizovi2[0].id, idp=pitanja1[0].broji)}}  value="Izbrisi pitanje" id="delete_pitanje_btn" class="btn btn-primary" >
+                           
+                            <input type="submit" formaction={{ url_for("delete_kviz", id=kvizovi2[0].id)}}  value="Izbrisi kviz" class="btn btn-primary " id="delete_kviz_btn">
+                            
+                    
+                    
+                        </div>
+                        </form>
+                        <a href={{ url_for("render_pocetna",id=1,idp=1)}}><button type="button" id="izadji_btn"  class="btn btn-primary"   >IZADJI</button></a>
+                
+                        </div>
+                    </div>
+
+                    </div>
+        
+                </div>
+        
+                <!-- dole je base-->
+                <div class="col-md-2" id="div_rang" ><!--div za rang listu-->
+                    <h3 class="sidebar-head">Rang lista</h3>
+                    <ol type="1" >
+                        {% for korisnik in korisnici %}
+                        <li >
+                            <div style="display: flex;">{{korisnik.ime}} 
+                                <!--forma za brisanje usera -->
+                               <form action={{ url_for("deluser", id=korisnik.id)}} method="POST" >
+                                <button  class="btn btn-danger" id="delete_user_btn">
+                                <i class="fas fa-trash"></i>
+                                </button>
+                                </form>
+                            </div> 
+                            
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    <a href={{ url_for("logout")}}><button type="button" id="logout_btn" class="btn btn-primary" >LOGOUT</button></a>
+                </div>
+        </div>
+
+
+        <script src="/static/bootstrap-4.5.3/js/bootstrap.js"></script>
+            <script src="/static/fontawesome-free-6.2.1/js/all.js"></script>
+            <script src=""></script>
+    </body>
+</html>

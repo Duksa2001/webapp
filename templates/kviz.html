@@ -1,0 +1,30 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-md-center"><progress value={{kvizovi[0].broji}} max={{kvizMaxPitanja[0]["maks"]}} style="width:80%;height: 30px;background-color:#4525b6;"></progress></div>
+<div class="row justify-content-md-center">
+    <div id="container-text-pitanja" >
+    <p id="tekst-pitanja">{{tekstp[0].tekst}}</p></div>
+</div>
+<div class="row justify-content-md-center">
+    <div onclick="location.href='{{url_for('render_kviz',id=kvizovi2[0].id,idp=kvizovi[0].broji+1,IzborPitanja=1)}}';" id="container-text-odgovor1" >
+    <p id="tekst-odg1">{{tekstp[0].odg1}}</p></div>
+    
+    
+    <div onclick="location.href='{{url_for('render_kviz',id=kvizovi2[0].id,idp=kvizovi[0].broji+1,IzborPitanja=2)}}';" id="container-text-odgovor2" >
+    <p id="tekst-odg2">{{tekstp[0].odg2}}</p></div>
+</div>
+</a>
+
+    <div class="row justify-content-md-center">
+    <div onclick="location.href='{{url_for('render_kviz',id=kvizovi2[0].id,idp=kvizovi[0].broji+1,IzborPitanja=3)}}';" id="container-text-odgovor3" >
+    <p id="tekst-odg3">{{tekstp[0].odg3}}</p></div>
+    
+    
+        <div onclick="location.href='{{url_for('render_kviz',id=kvizovi2[0].id,idp=kvizovi[0].broji+1,IzborPitanja=4)}}';" id="container-text-odgovor4" >
+    <p id="tekst-odg4">{{tekstp[0].odg4}}</p></div>
+
+</div>
+
+
+{% endblock %}
