@@ -1,0 +1,122 @@
+.col-md-2::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
+  
+  
+  html,body { height: 100%; }
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+#container-text-odgovor1{
+  display: flex;justify-content: center;align-items: center;margin:15px;text-align: center; height: 100px; width: 40%; outline: none; padding: 5px; border-radius: 10px;border: 1px solid lightgrey;
+    border-bottom-width: 2px;font-size: 20px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
+
+}
+
+#container-text-odgovor2{
+  display: flex;justify-content: center;align-items: center;margin:15px;text-align: center; height: 100px; width: 40%; outline: none; padding: 5px; border-radius: 10px;border: 1px solid lightgrey;
+    border-bottom-width: 2px;font-size: 20px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
+
+}
+
+#container-text-odgovor3{
+  display: flex;justify-content: center;align-items: center;margin:15px;text-align: center; height: 100px; width: 40%; outline: none; padding: 5px; border-radius: 10px;border: 1px solid lightgrey;
+    border-bottom-width: 2px;font-size: 20px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
+
+}
+
+#container-text-odgovor4{
+  display: flex;justify-content: center;align-items: center;margin:15px;text-align: center; height: 100px; width: 40%; outline: none; padding: 5px; border-radius: 10px;border: 1px solid lightgrey;
+    border-bottom-width: 2px;font-size: 20px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
+
+}
+
+#container-text-pitanja{
+  display: flex;justify-content: center;align-items: center; height: 200px; width: 80%; outline: none; padding: 20px; border-radius: 5px;border: 1px solid lightgrey;
+    border-bottom-width: 2px;font-size: 22px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
+
+}
+#logout_btn{
+  float: right; width: 88%; position: absolute; 
+                    background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+                   
+                        bottom: 10px; padding: 10px; 
+                        border-color: #2810af;
+}
+
+#delete_user_btn{
+  width: 20px; height:20px;display: flex;justify-content: center;align-items: center;margin-left: 10px;
+  border-color: #2810af;
+}
+
+#izadji_btn{
+  float: right; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+  border-color: #2810af;
+}
+
+#delete_kviz_btn{
+  background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+  border-color: #2810af;
+}
+
+#delete_pitanje_btn{
+  background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+  border-color: #2810af;
+}
+
+#sacuvaj_btn{
+  background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+  border-color: #2810af;
+}
+
+#dropdown-tacan-odgovor{
+  height: 100%; width: 30%; outline: none; padding-left: 15px; border-radius: 5px;border: 1px solid lightgrey;
+                            border-bottom-width: 2px;font-size: 17px;
+}
+
+.unos_forma{
+  height: 100%; width: 100%;outline: none;padding-left: 15px;border-radius: 5px;border: 1px solid lightgrey;
+                            border-bottom-width: 2px;font-size: 17px;transition: all 0.3s ease;
+                            
+}
+
+#add_pitanje_btn{
+  float: right; width: 88%; position: absolute;
+                            bottom: 10px; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); 
+                            border-color: #2810af;
+}
+
+#add_kviz{
+  float: right; width: 88%; position: absolute;
+                    bottom: 10px; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+                    border-color: #2810af;
+}
+
+#kviz_ime_btn{
+  border-color: #2810af; width: 88%; 
+        bottom: 10px;  padding: 10px; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+}
+#div_oblasti{
+  background-color:#f0eaea; border-right: 6px solid #2810af; overflow:scroll;overflow-x: hidden; overflow-y: scroll;padding:20px;
+}
+
+#div_rang{
+  background-color:#f0eaea;overflow-x: hidden; border-left: 6px solid #2810af; overflow-y: scroll; padding: 20px;
+}
+
+#div_modifikuj{
+  display: flex; background-color: #f0eaea; border: 6px solid #2810af; max-height: 500px;
+}
+#div_pitanja{
+  background-color:#f0eaea; overflow:scroll;  overflow-x: hidden; overflow-y: scroll; padding:20px;
+}
+#pitanje_btn{
+  width: 88%; 
+                                    bottom: 10px;  padding: 2px; border-color: #2810af; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
+}
