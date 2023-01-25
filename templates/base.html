@@ -9,8 +9,8 @@
     </head>
     <body>
 <div class="grid-container" style="display: flex; background-color: aqua; height: 100%;">
-    <div class="col-md-2 " id="div_oblasti" ><!--div za izbor kviza-->
-        <h3 class="sidebar-head">OBLASTI</h3>
+    <div class="col-md-2 "  ><!--div za izbor kviza-->
+        <h3 class="sidebar-head" style="padding-top: 15px;">OBLASTI</h3>
         
        <!-- brise duplikate(duplikati se pojavljuju zato sto su spojio dve tabele)-->
         {% set slots = [] %}  
@@ -39,8 +39,8 @@
     <div class="col-md-8" style="background-color:#f0eaea;"><!--div kviza-->
         <div class="row justify-content-md-center">
               <div class="col-md-auto" style="margin-top: 80px;">
-                
                 <h1>{{kvizovi2[0].ime}}</h1>
+                
               </div></div>
              
                 {% block content %}

@@ -12,9 +12,9 @@
     </head>
     <body>
         <div  class="grid-container" style="display: flex; background-color: aqua; height: 100%;">
-            <div class="col-md-2 " id="div_oblasti" ><!--div za izbor kviza-->
-                 <h3 class="sidebar-head">OBLASTI</h3>
-        
+            <div class="col-md-2 "   ><!--div za izbor kviza-->
+                 <h3 class="sidebar-head" style="padding-top: 15px;">OBLASTI</h3>
+        <div id="div_oblasti">
                 {% set slots = [] %}  
                 {% for kviz in kvizovi  %}
                 {% if kviz.ime in slots %}
@@ -33,6 +33,9 @@
                 {% endif %}
                 {% endfor %}
 
+        </div>
+
+
                 <div class="button-add"><a href="{{ url_for("novi_kviz")}}">
                     
                     <button class="btn btn-primary" id="add_kviz" >Dodaj novi kviz</button>
@@ -49,18 +52,22 @@
                 </div>
 
                 <div class="container-modifikuj" id="div_modifikuj" >
-                    <div class="col-md-2 " id="div_pitanja"><!--div za izbor kviza-->
-                        <h3 class="sidebar-head">PITANJA</h3>
-        
+                    <div class="col-md-2 " ><!--div za izbor kviza-->
+                        
+                        <h3 class="sidebar-head" style="padding: 10px;">PITANJA</h3>
+                        <div id="div_pitanja" >
+    
                         {% for pitanje in pitanja %}
                             <div style="padding: 2px;  ">
                                 <a href="{{url_for("render_modifikuj",id=pitanje.quiz_id,idp=pitanje.broji)}}"><button type="button" id="pitanje_btn" class="btn btn-primary"  >br.{{pitanje.broji}}</button></a>
                                 
                             </div>
                         {% endfor %}
-                
-                        <div class="button-add"><a href={{ url_for("novo_pitanje", id=kvizovi2[0].id)}}><button class="btn btn-primary" id="add_pitanje_btn">Dodaj novo pitanje</button></a>
-                    
+
+                        </div>
+                        
+                        <div class="button-add" ><a href={{ url_for("novo_pitanje", id=kvizovi2[0].id)}}><button class="btn btn-primary" id="add_pitanje_btn">Dodaj novo pitanje</button></a>
+                        
     
         
                     </div>
@@ -110,16 +117,63 @@
                             
 
                             
-                            <input type="submit" formaction={{ url_for("delete_pitanje", id=kvizovi2[0].id, idp=pitanja1[0].broji)}}  value="Izbrisi pitanje" id="delete_pitanje_btn" class="btn btn-primary" >
-                           
-                            <input type="submit" formaction={{ url_for("delete_kviz", id=kvizovi2[0].id)}}  value="Izbrisi kviz" class="btn btn-primary " id="delete_kviz_btn">
                             
-                    
+                           
+                            
+                            
+                            
+                                <div class="modal fade" id="modalDelKviz{{kvizovi2[0].id}}" role="dialog">
+                                    <div class="modal-dialog">
+                                    
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Da li ste sigurni da zelite da izbrisete kviz {{kvizovi2[0].ime}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" formaction={{ url_for("delete_kviz", id=kvizovi2[0].id)}}  value="Izbrisi kviz" class="btn btn-primary " id="delete_kviz_btn">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                  
+
+                                  <div class="modal fade" id="modalDelPitanje{{kvizovi2[0].id}}-{{pitanja1[0].broji}}" role="dialog">
+                                    <div class="modal-dialog">
+                                    
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Da li ste sigurni da zelite da izbrisete pitanje {{pitanja1[0].broji}} iz kviza {{kvizovi2[0].ime}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" formaction={{ url_for("delete_pitanje", id=kvizovi2[0].id, idp=pitanja1[0].broji)}}  value="Izbrisi pitanje" id="delete_pitanje_btn" class="btn btn-primary" >
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                            
+                                  
+
+
                     
                         </div>
+                        
                         </form>
+                        
                         <a href={{ url_for("render_pocetna",id=1,idp=1)}}><button type="button" id="izadji_btn"  class="btn btn-primary"   >IZADJI</button></a>
-                
+                        <button id="delete_kviz_btn"  class="btn btn-primary"  data-toggle="modal" data-target="#modalDelKviz{{kvizovi2[0].id}}" style="float: right; margin:10px;">
+                            Izbrisi kviz</button>
+                        <button id="delete_pitanje_btn"  class="btn btn-primary"  data-toggle="modal" data-target="#modalDelPitanje{{kvizovi2[0].id}}-{{pitanja1[0].broji}}" style="float: right; margin:10px;">
+                                Izbrisi pitanje</button>
                         </div>
                     </div>
 
@@ -135,21 +189,40 @@
                         <li >
                             <div style="display: flex;">{{korisnik.ime}} 
                                 <!--forma za brisanje usera -->
-                               <form action={{ url_for("deluser", id=korisnik.id)}} method="POST" >
-                                <button  class="btn btn-danger" id="delete_user_btn">
+                               <button  class="btn btn-danger" style="width: 20px; height:20px;display: flex;justify-content: center;align-items: center;margin-left: 10px;"  data-toggle="modal" data-target="#modalDelUser{{korisnik.id}}">
                                 <i class="fas fa-trash"></i>
                                 </button>
-                                </form>
+                                <div class="modal fade" id="modalDelUser{{korisnik.id}}" role="dialog">
+                                    <div class="modal-dialog">
+                                    
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Da li ste sigurni da zelite da izbrisete korisnika {{korisnik.ime}} {{korisnik.prezime}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <form action="{{ url_for('deluser', id=korisnik.id)}}" method="POST" >
+                                        <button  class="btn btn-danger">Izbrisi</button>
+                                        </form>
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
                             </div> 
                             
                         </li>
+                        
                         {% endfor %}
                     </ol>
                     <a href={{ url_for("logout")}}><button type="button" id="logout_btn" class="btn btn-primary" >LOGOUT</button></a>
                 </div>
         </div>
 
-
+        <script src="/static/jquery-3.6.0.js"></script>
         <script src="/static/bootstrap-4.5.3/js/bootstrap.js"></script>
             <script src="/static/fontawesome-free-6.2.1/js/all.js"></script>
             <script src=""></script>
