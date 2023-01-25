@@ -230,13 +230,17 @@ def render_modifikuj(id=1,idp=1):
 def deluser(id):
                 
                 if ulogovan():
+                        
                         upitUserRolaProvera="select rola from user where id=%s"
                         vrednostUserRolaProvera=(id, )
                         kursor.execute(upitUserRolaProvera, vrednostUserRolaProvera)
                         UserRolaProvera=kursor.fetchall()
+                        print("USERE ROLA :                   ",id,UserRolaProvera[0]["rola"])
                         if(UserRolaProvera[0]["rola"]=="admin"):
+                                print("ADMIN               .................")
                                 return redirect(url_for("render_modifikuj",id=1,idp=1))
                         else:
+                                print("KORISNIK               .................")
                                 upit="DELETE FROM user WHERE id=%s"
                                 vrednost=(id, )
                                 kursor.execute(upit,vrednost)
