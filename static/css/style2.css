@@ -1,8 +1,34 @@
+progress {
+  border-radius: 10px; 
+  width: 80%;
+  height: 30px;
+ box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+ margin-bottom: 10px;
+}
+progress::-webkit-progress-bar {
+  background-color: hsl(249, 83%, 37%);
+  border-radius: 7px;
+  
+}
+progress::-webkit-progress-value {
+  background-color: hsl(249, 100%, 50%);
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px hsla(290, 100%, 50%, 0.712);
+  
+}
+
+
+
+
 .col-md-2::-webkit-scrollbar {
     display: none;
   }
-  
-  
+  #div_pitanja::-webkit-scrollbar{
+    display: none;
+  }
+  #div_oblasti::-webkit-scrollbar{
+    display: none;
+  }
   
   
   html,body { height: 100%; }
@@ -12,7 +38,9 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-
+.col-md-2{
+  background-color:#f0eaea; border-right: 6px solid #2810af;max-height: 100%; overflow:scroll;overflow-x: hidden; overflow-y: scroll;
+}
 #container-text-odgovor1{
   display: flex;justify-content: center;align-items: center;margin:15px;text-align: center; height: 100px; width: 40%; outline: none; padding: 5px; border-radius: 10px;border: 1px solid lightgrey;
     border-bottom-width: 2px;font-size: 20px;background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6); color: white;
@@ -58,6 +86,7 @@
 #izadji_btn{
   float: right; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
   border-color: #2810af;
+  margin:10px;
 }
 
 #delete_kviz_btn{
@@ -103,7 +132,7 @@
         bottom: 10px;  padding: 10px; background: -webkit-linear-gradient(right, #2810af, #4525b6, #2810af, #4525b6);
 }
 #div_oblasti{
-  background-color:#f0eaea; border-right: 6px solid #2810af; overflow:scroll;overflow-x: hidden; overflow-y: scroll;padding:20px;
+  max-height: 800px;  overflow:scroll;overflow-x: hidden; overflow-y: scroll;
 }
 
 #div_rang{
@@ -114,7 +143,7 @@
   display: flex; background-color: #f0eaea; border: 6px solid #2810af; max-height: 500px;
 }
 #div_pitanja{
-  background-color:#f0eaea; overflow:scroll;  overflow-x: hidden; overflow-y: scroll; padding:20px;
+  background-color:#f0eaea; overflow:scroll;  overflow-x: hidden; overflow-y: scroll; padding:20px;max-height: 350px;
 }
 #pitanje_btn{
   width: 88%; 
